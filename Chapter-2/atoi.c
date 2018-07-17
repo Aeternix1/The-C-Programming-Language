@@ -4,12 +4,17 @@
 #define LIMIT 100
 
 int atoi (char s[]);
+void lower(char s[]);
 
 int main () {
     char s[LIMIT]= "12345";
+    char a[LIMIT] = "HELLO";
     printf("%d\n", atoi(s));
-} 
+    lower(a);
+    printf("%s\n",a);
 
+} 
+//Takes in a string of numbers and returns an integer
 int atoi (char s[]) {
     int i,n;
     n=0;
@@ -19,4 +24,14 @@ int atoi (char s[]) {
     }
     return n;
 }
+//Takes in a string of characers and converts uppercase into 
+//Lowercase leaves numbers and symbols unchanged
+void lower (char s[]) {
+    int i;
+    for (i=0; s[i] != '\0'; ++i) {
+        if (s[i] > 'A' && s[i] < 'Z') {
+            s[i] = s[i] + ' ';
+        }
+    }
+} 
 
