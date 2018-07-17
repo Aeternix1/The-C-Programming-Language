@@ -4,6 +4,8 @@
 #include <ctype.h>
 
 #define LIMIT 100
+#define FALSE 0
+#define TRUE !(FALSE)
 
 int htoi(char s[]); 
 int power(int a, int b);
@@ -13,7 +15,7 @@ int main () {
     printf("%x\n", 12345);
     int a = 16;
     int b = 4;
-    printf("%d ^ %d is %d",a,b, power(a,b));
+    printf("%d ^ %d is %d\n",a,b, power(a,b));
     char hex[LIMIT] = "3039";
     printf("The Length of the string is %d\n", last(hex));
     printf("%d\n", htoi(hex));
@@ -25,8 +27,16 @@ int htoi(char s[]) {
     int i,n,j;
     j=n=0;
     for (i=last(s); i >= 0 ; --i) {
-        n = n + (s[i] - '0') * power(16,j);
-        ++j;
+        if (s[i]>='0' && s[i]<='9') {
+            n = n + (s[i] - '0') * power(16,j);
+            ++j;
+        } else if (s[i] >= 'A' && s[i] <= 'F') {
+            n = n + (s[i] - 55) * power(16,j); 
+            ++j;
+        } else if (s[i] >= 'a' && s[i] <= 'f') {
+            n = n + (s[i] - 87) * power(16,j);
+            ++j;
+        }      
     }
     return n;
 }
