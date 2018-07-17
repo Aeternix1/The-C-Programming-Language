@@ -1,6 +1,7 @@
 //Atoi function converts a string of digits into an integer
 
 #include <stdio.h>
+#include <ctype.h>
 #define LIMIT 100
 
 int atoi (char s[]);
@@ -18,7 +19,7 @@ int main () {
 int atoi (char s[]) {
     int i,n;
     n=0;
-    for (i=0; s[i] >= '0' && s[i] <= '9'; ++i) {
+    for (i=0; isdigit(s[i]); ++i) {
         //Each number moves to another decimal place
         n = 10 * n + (s[i] - '0');
     }
