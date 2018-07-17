@@ -16,9 +16,11 @@ int main () {
     int a = 16;
     int b = 4;
     printf("%d ^ %d is %d\n",a,b, power(a,b));
-    char hex[LIMIT] = "3039";
+    char hex[LIMIT] = "3039x";
+    char hello[LIMIT] = "FFFFX";
     printf("The Length of the string is %d\n", last(hex));
     printf("%d\n", htoi(hex));
+    printf("%d\n", htoi(hello));
 } 
 
 //Takes in a string of hexadecmial numbers and converts it into its integer
@@ -27,6 +29,9 @@ int htoi(char s[]) {
     int i,n,j;
     j=n=0;
     for (i=last(s); i >= 0 ; --i) {
+        if (s[i] == 'x' ||  s[i] == 'X') {
+            --i;
+        }
         if (s[i]>='0' && s[i]<='9') {
             n = n + (s[i] - '0') * power(16,j);
             ++j;
