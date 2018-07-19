@@ -16,7 +16,7 @@ int main () {
     char str2[MAX] = "tzxcv2b";
     int match = any(str1, str2);
     printf("The first matching character is %c", match);
-
+    printf("The first matching character is at index %d", match);
 }
 
 int any(char str1[], char str2[]) {
@@ -28,7 +28,10 @@ int any(char str1[], char str2[]) {
     for (j=0; str1[j]!= '\0' ;++j) {
         for (k=0; str2[k]!='\0'||state==MATCH; ++k) {
             if (str1[j] == str2[k]) {
-                state = str1[j];
+                //Finding the first matching value
+                state = j;
+                //Finding the first matching index in s1
+                //printf("%d\n",j);
                 
             }
         }
