@@ -5,18 +5,35 @@
 #include <stdio.h>
 
 #define MAX 1000
+#define NO_MATCH -1
+#define MATCH (!NO_MATCH)
 
-any(s1, s2);
+int any(char str1[], char str2[]);
 
 int main () {
 
-    str1[MAX] = "hello2";
-    str2[MAX] = "tzxcv2b";
+    char str1[MAX] = "hello2";
+    char str2[MAX] = "tzxcv2b";
     int match = any(str1, str2);
     printf("The first matching character is %c", match);
 
 }
 
-int any(s1, s2) {
-     
+int any(char str1[], char str2[]) {
+    int state=NO_MATCH;
+    int j,k;
+    //Nested for loop, checks if a value in the second string 
+    //Matches a value in the first string 
+    //If they do store the value and escape the loop
+    for (j=0; str1[j]!= '\0' ;++j) {
+        for (k=0; str2[k]!='\0'||state==MATCH; ++k) {
+            if (str1[j] == str2[k]) {
+                state = str1[j];
+                
+            }
+        }
+    }
+
+    return state;
+
 } 
