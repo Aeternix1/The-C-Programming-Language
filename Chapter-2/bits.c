@@ -12,19 +12,18 @@ int power(int a, int b);
 int main () {
     char string[MAX];
     take_input(string);
-    printf("%s  = %d\n",string, bit2int(string));
+    printf("%s = %d\n",string, bit2int(string));
 }
 
 //Convert a character string of bits into an integer
 int bit2int (char bits[]) {
    //Navigate to the last digit
-   int i,j,n,a;
+    int i,j,n,a;
     for (i=j=n=0; bits[i]!='\0'; ++i) {
         ; 
     }
     --i;
     /*printf("%d\n", i);*/
-
     while(i >= 0) {
         if (bits[i] == '1') {
             a = 2;
@@ -49,7 +48,7 @@ void take_input(char input[]) {
     printf("Please enter your values:\n"); 
     int c;
     int i = 0;
-    while ((c=getchar())!=EOF) {
+    while ((c=getchar())!='\n') {
         input[i] = c;
         ++i;
     }
