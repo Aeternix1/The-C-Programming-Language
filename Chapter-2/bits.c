@@ -15,24 +15,29 @@ void int2bit (int integer, char bits[]);
 void take_input(char input[]);
 
 int main () {
-
-    /*char string[MAX];*/
-    /*printf("(1)Binary to Integer or (2) Integer to Binary\n");*/
-    /*int c=getchar();*/
-    /*if (c == '1') {*/
-        /*take_input(string);*/
-        /*printf("%s = %d\n",string, bit2int(string));*/
-
-    /*} else if (c == '2') {*/
-        /*take_input(string);*/
-        /*printf("The integer value is %d\n", int2int(string));*/
-        /*printf("The corresponding binary value is %s",int2bit();*/
-
-    //Need to test that int to int is working 
-    char string[MAX] = "15";
-    int integer = int2int(string);
-    int2bit(integer, string);
-    printf("%d = %s\n",integer, string);
+    
+    
+    char string[MAX];
+    int input;
+    printf("Which calculator would you like to use?\n");
+    printf("1 Binray to Integer or 2 Integer to Binary\n");
+    printf("Please enter a value. (1 or 2)\n");
+    scanf("%d", &input);
+    
+    if (input == 1) {
+        take_input(string);
+        printf("------------------------\n");
+        printf("Binary       Decimal\n");
+        printf("%s %9d\n",string, bit2int(string));
+    } else if (input == 2) {
+        take_input(string);
+        int integer = int2int(string);
+        int2bit(integer, string);
+        printf("------------------------\n");
+        printf("Decimal        Binary\n");
+        printf("%d           %s\n", integer, string);
+    }
+    
 }
 
 // a ^ b
@@ -101,7 +106,7 @@ void int2bit (int integer, char bits[]) {
     //Back to front using the traditional binary to hex conversion
     for (--i; integer!=0; --i) {
         bits[i] = integer%2 + '0'; 
-        printf("%d\n", integer%2);
+        /*printf("%d\n", integer%2);*/
         integer=integer/2;
     }
     
@@ -112,6 +117,8 @@ void take_input(char input[]) {
     printf("Please enter your values:\n"); 
     int c;
     int i = 0;
+    //Make sure to take in the second input
+    c=getchar();
     while ((c=getchar())!='\n') {
         if (c >= '0' && c <= '9') {
             input[i] = c;
