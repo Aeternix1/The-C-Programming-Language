@@ -6,10 +6,12 @@
 #define MAX 1000
 
 int bit2int (char bits[]);
+void take_input(char input[]);
 int power(int a, int b);
 
 int main () {
-    char string[MAX] = "1001";
+    char string[MAX];
+    take_input(string);
     printf("%s  = %d\n",string, bit2int(string));
 }
 
@@ -40,6 +42,18 @@ int bit2int (char bits[]) {
         ++j;
     }
     return n;
+}
+
+//Takes in an input and stores it into an array
+void take_input(char input[]) {
+    printf("Please enter your values:\n"); 
+    int c;
+    int i = 0;
+    while ((c=getchar())!=EOF) {
+        input[i] = c;
+        ++i;
+    }
+    input[i] = '\0';
 }
 
 // a ^ b
