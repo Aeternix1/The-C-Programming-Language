@@ -2,55 +2,24 @@
 //Getbits takes in a value
 //Given the position and an 'n', getbits will return the value of the n field
 
-//Conversion functions
+
 int power(int a, int b);
 int bit2int (char bits[]);
 int int2int (char integer[]);
 void int2bit (int integer, char bits[]);
 void take_input(char input[]);
-
-//Bitwise functions
 unsigned short getbits(unsigned x, int p, int n);
-int is_in_use (char car, int num);
-int set_in_use(int car_num);
 
 #include <stdio.h>
 
-#define MAX 1000
-#define YES 1
-#define NO 0
-
+unsigned short getbits(unsigned x, int p, int n);
 int main () {
-    char bits[MAX];
-    //Bunch of values we want to check exist.
-    char car = 0;
-
-    int2bit(car, bits);
-    printf("%s\n", bits);
-    car = car << 2;       
-    printf("%d\n", car);
-    int2bit(car, bits);
-    //printf("The number in bits is %s\n", bits);
-    //is_in_use(car, 2);
-    car = set_in_use(car, 2);
-
-    return 0;
-}
-
-int is_in_use (char car, int num) {
-    if ((car & 1<<num) != NO) { 
-        printf("There is a car at index %d", num);     
-    } else {
-        printf("There isn't a car at index %d", num);
-    }
-    return car & 1<<num;
+    int x = 8;
+    int p = 3;
+    printf("Getbits(%d, %d, %d) = %d", getbits(x,p,n));
 
 }
 
-//Sets a particular bit to 1 given the character and an int
-int set_in_use(char car, int num)  {
-    return car | 1<<num; 
-}
 //Get bits program
 unsigned short getbits(unsigned x, int p, int n) {
     return (x >> (p+1-n)) & ~(~0 << n);
