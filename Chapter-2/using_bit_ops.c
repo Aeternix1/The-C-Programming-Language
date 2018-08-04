@@ -8,6 +8,7 @@ char set_off (char in_use, int n);
 
 unsigned int getbits(unsigned int x, int p, int n);
 void setbits(unsigned char x, int p, int n, int y);
+void invert (unsigned char x, int p, int n);
 
 int main () {
     
@@ -20,14 +21,16 @@ int main () {
     /*car = set_off (car, 3);*/
     /*printf("%d\n", car);*/
 
-    unsigned char x = 175;
-    int p = 3;
+    unsigned char x=160;
+    int p = 7;
     int n = 3;
-    int y = 7;
+    /*int y = 7;*/
 
-    //printf("getbits(%d, %d, %d) = %d\n", x, p, n, getbits(x,p,n));
-    //printf("%d\n", x);
-    setbits(x, p, n, y);
+    printf("getbits(%d, %d, %d) = %d\n", x, p, n, getbits(x,p,n));
+    /*printf("%d\n", x);*/
+    /*setbits(x, p, n, y);*/
+    
+    invert(x,p,n);
 }
 
 int is_in_use (char in_use, int n) {
@@ -59,7 +62,7 @@ void setbits(unsigned char x, int p, int n, int y) {
     //Set to 0 values between x  & n
     int counter = n;
     int position = p;
-    while (counter > 0) {
+    while (counter >= 0) {
         x = set_off(x,position);
         --position;
         --counter;
@@ -74,3 +77,33 @@ void setbits(unsigned char x, int p, int n, int y) {
     printf("%d\n", a|x);
 
 }
+
+//Invert the p to n number of digits
+void invert (unsigned char x, int p, int n) {
+    
+    /*Inversing the number*/
+    unsigned char a = ~x;
+    printf("Inversing the isolated number %d\n", a);
+
+    a = getbits(a, p, n);
+    printf("Isolating the p to n digits %d\n", a);
+    
+    //Set to 0 values between x  & n
+    int counter = n;
+    int position = p;
+    while (counter >= 0) {
+        x = set_off(x,position);
+        --position;
+        --counter;
+    }
+    printf("Setting the p to n digits to zero %d\n", x);
+
+    //Move the inverted values back into position
+    a = a << (p+1-n );
+    printf("Lining up the isolated number %d\n", a);
+    
+    //Put the two variables together
+    printf("The final inverted number %d\n", a|x);
+
+}
+
