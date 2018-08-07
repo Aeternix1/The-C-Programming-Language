@@ -6,18 +6,17 @@ int bitcount (unsigned short x);
 
 int main() {
 
-    unsigned short x = 1;
+    unsigned short x = 2;
     printf("bitcount(%d) = %d", x , bitcount(x));
 }
 
 int bitcount (unsigned short x){
     int n;
-    while((x=x&(x-1))!=0) {
+    for (n=0; x!=0; x>>=1) {
         if (x & 1) {
             ++n; 
         }
     }
-    } 
     return n;
 }
 
