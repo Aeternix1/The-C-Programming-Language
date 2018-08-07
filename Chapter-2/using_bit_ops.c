@@ -107,3 +107,9 @@ void invert (unsigned char x, int p, int n) {
 
 }
 
+/*Function rightrot(x,n) returns the value of the integer x rotated by n positions*/
+void rightrot(unsigned x, int n) {
+    while (n > 0) {
+       
+    }
+}
