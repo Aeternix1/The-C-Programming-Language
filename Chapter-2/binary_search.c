@@ -16,14 +16,13 @@ int main() {
     
     int array[SIZE];
     makearray(array, SIZE);
-    int x = 1.5;
-    printf("%d\n",x);
 
     printf("Upper half %d\n", binsearch(120, array, SIZE));
-    printf("Not in array > range %d\n", binsearch(200, array, SIZE));
-    printf("Small in range %d\n", binsearch(20, array, SIZE));
-    printf("Not in array < range %d\n", binsearch(170, array, SIZE));
+    printf("Small in range %d\n", binsearch(0, array, SIZE));
+    printf("Big in range %d\n", binsearch(180, array, SIZE));
+    printf("Too big %d\n", binsearch(200, array, SIZE));
     printf("Too small %d\n", binsearch(-10, array, SIZE));
+    printf("Not in array < range %d\n", binsearch(70, array, SIZE));
 }
 
 int binsearch(int x, int v[], int n) { 
@@ -35,7 +34,14 @@ int binsearch(int x, int v[], int n) {
     while (low <= high) {
         mid = (low+high)/2;
         if (x < v[mid]) {
-            high = mid + 1;
+            if (x < v[0]) {
+                return -1;
+            }
+            if (mid == 1 || mid == 0) {
+                high = mid;
+            } else {
+                high = mid + 1;
+            }
         } else if (x > v[mid]) {
             low = mid + 1;
         } else /*found match */ {
